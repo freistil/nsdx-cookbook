@@ -1,0 +1,43 @@
+driver:
+  name: dokken
+  privileged: true
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+  log_level: info
+
+verifier:
+  name: inspec
+  root_path: "/opt/verifier"
+  sudo: false
+
+platforms:
+  - name: ubuntu-16
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /sbin/init
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+        - RUN /usr/bin/apt-get install apt-transport-https net-tools curl -y
+
+suites:
+  - name: default
+    run_list:
+      - recipe[nsdx_test::default]
+      - recipe[nsdx::master]
+    attributes:
+      nsdx:
+        master:
+          fqdn: ns1.example.com
+  - name: databag
+    run_list:
+      - recipe[nsdx::databag]
+      - recipe[nsdx::master]
+    data_bags_path: "test/integration/data_bags"
+    attributes:
+      nsdx:
+        master:
+          fqdn: ns1.example.com

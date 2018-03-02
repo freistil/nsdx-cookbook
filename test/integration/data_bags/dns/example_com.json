@@ -1,0 +1,29 @@
+{
+  "id": "example_com",
+  "domain_name": "example.com",
+  "autopopulate": true,
+  "ns_rr": [
+    { "host": "dns1.example.com" },
+    { "host": "dns2.example.com" }
+  ],
+  "a_rr": [
+    { "host": "www",       "ipv4": "1.2.3.4", "ttl": 300 },
+    { "host": "mail",      "ipv4": "2.3.4.5" }
+  ],
+  "cname_rr": [
+    { "host": "web",       "cname": "www" }
+  ],
+  "mx_rr": [
+    { "subdomain": "", "distance": 1, "mx": "aspmx.l.google.com", "ttl": 3600 },
+    { "subdomain": "", "distance": 5, "mx": "alt1.aspmx.l.google.com", "ttl": 3600 },
+    { "subdomain": "", "distance": 5, "mx": "alt2.aspmx.l.google.com", "ttl": 3600 },
+    { "subdomain": "", "distance": 10, "mx": "aspmx2.googlemail.com", "ttl": 3600 },
+    { "subdomain": "", "distance": 10, "mx": "aspmx3.googlemail.com", "ttl": 3600 }
+  ],
+  "spf_rr": [
+    { "host": "_spf", "policy": "v=spf1 ~all" }
+  ],
+  "txt_rr": [
+    { "host": "", "text": "abcdefg", "ttl": "3600" }
+  ]
+}

@@ -1,0 +1,25 @@
+$ORIGIN <%= @zone %>.
+$TTL <%= @ttl %>
+@ IN SOA <%= @master_fqdn %>. <%= @contact %>. (
+    <%= @serial %>
+    3600
+    900
+    1209600
+    <%= @ttl %>
+)
+
+@ IN NS <%= @master_fqdn %>.
+<% @slaves.each do |slave_fqdn, _| %>
+@ IN NS <%= slave_fqdn %>.
+<% end %>
+
+<% if @master_fqdn.split('.').drop(1).join('.') == @zone %>
+<%= @master_fqdn.split('.')[0] %> IN A <%= @master_ip_address %>
+  <% @slaves.each do |slave_fqdn, slave_ip_address| %>
+<%= slave_fqdn.split('.')[0] %> IN A <%= slave_ip_address %>
+  <% end %>
+<% end %>
+
+<% @records.each do |record| %>
+<%= record.bind9entry %>
+<% end %>

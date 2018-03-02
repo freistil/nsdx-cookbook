@@ -1,0 +1,24 @@
+server:
+    port: 53
+    do-ip4: yes
+    do-ip6: no
+    username: "<%= @service_user %>"
+    hide-version: yes
+    zonesdir: "<%= @zone_dir %>"
+    logfile: "<%= @log_file %>"
+    pidfile: "<%= @pid_file %>"
+
+# Slave key configuration
+key:
+    name: "<%= "#{@key_name.gsub('.', '_')}_key" %>"
+    algorithm: "hmac-sha256"
+    secret: "<%= @key_secret %>"
+
+# Zone configuration
+<% @zones.each do |fqdn| %>
+zone:
+    name: <%= fqdn %>
+    zonefile: <%= fqdn %>.zone
+    allow-notify: <%= @master_ip_address %> <%= "#{@key_name.gsub('.', '_')}_key" %>
+    request-xfr: <%= @master_ip_address %> <%= "#{@key_name.gsub('.', '_')}_key" %>
+<% end %>
