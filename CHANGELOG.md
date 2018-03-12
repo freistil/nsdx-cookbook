@@ -1,5 +1,5 @@
 # Changelog for nsdx cookbook
 
-## HEAD
+## v1.0.0 2018-03-12
 
 * initial release
