@@ -7,13 +7,27 @@ This cookbook is based on the nsd cookbook by Alexander Pyatkin
 
 ## Recipes
 
-### nsd::master
+### nsdx::master
 
 Install nsd master and configure zones.
 
-### nsd::slave
+### nsdx::slave
 
 Install nsd slave and configure zones.
+
+### nsdx::databag
+
+Set up zone data from a data bag.
+
+## Resources
+
+### nsdx_resource_record
+
+Define a resource record in a zone.
+
+## nsdx_zone
+
+Define a zone.
 
 ## Configuration
 
