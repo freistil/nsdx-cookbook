@@ -1,7 +1,6 @@
 require "date"
 
 include_recipe "#{COOKBOOK}::service_user"
-Chef::Recipe.send(:include, Nsdx::Helpers)
 
 secret = ::ChefCookbook::Secret::Helper.new(node)
 
@@ -21,9 +20,9 @@ end
 service_user = node[COOKBOOK]["service"]["user"]
 
 registry = Nsdx::ZoneRegistry.new(node)
-zone_dir = nsd_zone_dir
+zone_dir = Nsdx::Helpers.nsd_zone_dir(node)
 
-template service_conf_file do
+template Nsdx::Helpers.service_conf_file(node) do
   source "nsd.master.conf.erb"
   owner "root"
   group node["root_group"]

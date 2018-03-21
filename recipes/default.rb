@@ -1,6 +1,4 @@
-Chef::Recipe.send(:include, Nsdx::Helpers)
-
-directory nsd_zone_dir do
+directory Nsdx::Helpers.nsd_zone_dir(node) do
   action :create
   owner "root"
   group node["root_group"]

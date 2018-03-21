@@ -2,14 +2,14 @@ COOKBOOK = "nsdx".freeze
 
 module Nsdx
   module Helpers
-    def nsd_zone_dir
+    def self.nsd_zone_dir(node)
       ::File.join(
         node[COOKBOOK]["service"]["conf_dir"],
         "zones",
       )
     end
 
-    def service_conf_file
+    def self.service_conf_file(node)
       ::File.join(
         node[COOKBOOK]["service"]["conf_dir"],
         "nsd.conf",

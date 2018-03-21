@@ -4,8 +4,6 @@
 # end
 #
 
-Chef::Resource.send(:include, Nsdx::Helpers)
-
 property :zone_name, String, name_property: true
 property :contact, String, default: "hostmaster@example.com"
 property :ttl, Integer, default: node[COOKBOOK]["default_ttl"]
@@ -13,7 +11,7 @@ property :ttl, Integer, default: node[COOKBOOK]["default_ttl"]
 action :create do
   registry = Nsdx::ZoneRegistry.new(node)
   zone = registry.zone(new_resource.zone_name)
-  zone_dir = nsd_zone_dir
+  zone_dir = Nsdx::Helpers.nsd_zone_dir(node)
 
   # We only have to update the real zone file
   # if the dummy file without serial number updates
