@@ -91,7 +91,11 @@ end
 #
 
 databag_name = node[COOKBOOK]["databag"]
-items = data_bag(databag_name)
-items.each do |item_key|
-  process_zone_item(data_bag_item(databag_name, item_key))
+begin
+  items = data_bag(databag_name)
+  items.each do |item_key|
+    process_zone_item(data_bag_item(databag_name, item_key))
+  end
+rescue
+  Chef::Log.error "Could not load DNS data bag '#{databag_name}'."
 end
