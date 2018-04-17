@@ -49,7 +49,7 @@ def add_record_from_item(zone, type, element)
     type type.upcase
     ip_address element["ipv4"] unless element["ipv4"].nil?
     cname element["cname"] unless element["cname"].nil?
-    preference element["distance"] unless element["distance"].nil?
+    preference element["distance"].to_i unless element["distance"].nil?
     mx element["mx"] unless element["mx"].nil?
     policy element["policy"] unless element["policy"].nil?
     text element["text"] unless element["text"].nil?
