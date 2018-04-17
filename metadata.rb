@@ -2,7 +2,7 @@ name "nsdx"
 maintainer "freistil IT Ltd"
 maintainer_email "ops@freistil.it"
 license "MIT"
-version "1.0.0"
+version "1.0.1"
 description "Install and configure NSD"
 
 if respond_to?(:source_url)

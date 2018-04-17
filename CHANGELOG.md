@@ -1,6 +1,6 @@
 # Changelog for nsdx cookbook
 
-## HEAD
+## v1.0.1 2018-04-17
 
 * Fixed: Proper handling of string values for MX preference
 
